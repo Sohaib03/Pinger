@@ -37,6 +37,8 @@ public class FXMLDocumentController implements Initializable {
     private CheckBox SoundCheckBox;
     @FXML 
     TextField PingCountText; 
+    @FXML
+    TextField timeIntervalBox;
     
     @FXML
     private void handleButtonAction(ActionEvent event) throws IOException {
@@ -48,11 +50,13 @@ public class FXMLDocumentController implements Initializable {
         
         //if (SoundCheckBox.isSelected()) flags.concat("a");
         String PingCountString = PingCountText.getText();
+        
         int PingCount = Integer.parseInt(PingCountString);
         if ("IPv6".equals(ip)) flags += "6";
         else flags += "4";
         String webAddress=textField.getText();
-        label.setText(Pinger(webAddress,flags, PingCount));
+        String timeInterval = timeIntervalBox.getText();
+        label.setText(Pinger(webAddress,flags, PingCount, timeInterval));
     }
     
     @Override
@@ -63,9 +67,9 @@ public class FXMLDocumentController implements Initializable {
     }    
     
     
-    String Pinger(String webaddress, String flags, int PingCount) throws IOException {
+    String Pinger(String webaddress, String flags, int PingCount, String timeInterval) throws IOException {
         ProcessBuilder processBuilder = new ProcessBuilder();
-        String command = "ping -c "+PingCount+" "+flags+ " " + webaddress;
+        String command = "ping -c "+PingCount+" "+flags+ " " + " -i " +timeInterval+ " " + webaddress;
         System.out.println(command);
         processBuilder.command("bash" , "-c", command);
         String allLines = "";
