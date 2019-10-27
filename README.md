@@ -6,4 +6,4 @@ Current Supported Options are :
       1. Time Interval between two distinct pings. 
       2. Verbose Output.
       3. Count of Pings.
-      4. Continous Stream of pings.https://www.google.com/search?client=firefox-b-d&q=interesting+things+in+linux+shell
+      4. Continous Stream of pings.
