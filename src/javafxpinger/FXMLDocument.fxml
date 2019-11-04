@@ -13,37 +13,57 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane id="AnchorPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxpinger.FXMLDocumentController">
+<AnchorPane id="AnchorPane" styleClass="borderPane" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javafxpinger.FXMLDocumentController">
     <children>
-      <VBox spacing="15.0">
+      <VBox spacing="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <HBox prefHeight="42.0" prefWidth="800.0" spacing="15.0">
+            <HBox styleClass="titleBar">
                <children>
-                  <TextField fx:id="textField" prefHeight="26.0" prefWidth="325.0" promptText="Website Address" text="www.google.com" />
                   <Region HBox.hgrow="ALWAYS" />
-                    <Button fx:id="button" onAction="#handleButtonAction" text="Ping" />
+                  <Label styleClass="appName" text="Pinger">
+                     <padding>
+                        <Insets top="4.0" />
+                     </padding>
+                  </Label>
+                  <Region HBox.hgrow="ALWAYS" />
+                  <Label onMouseClicked="#closeButtonClicked" styleClass="closeBtn">
+                     <padding>
+                        <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="50.0" prefWidth="800.0" spacing="15.0">
+               <children>
+                  <TextField fx:id="textField" prefHeight="40.0" prefWidth="325.0" promptText="Website Address" styleClass="textfield" text="www.google.com" />
+                  <Region HBox.hgrow="ALWAYS" />
+                    <Button fx:id="button" onAction="#handleButtonAction" prefHeight="40.0" prefWidth="100.0" text="Ping" />
                </children>
                <padding>
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                </padding>
             </HBox>
-            <Label fx:id="label2" text="Advanced Settings" />
+            <Label fx:id="label2" text="Advanced Settings" textFill="WHITE">
+               <VBox.margin>
+                  <Insets left="12.0" right="12.0" />
+               </VBox.margin></Label>
             <HBox spacing="20.0">
                <children>
-                  <RadioButton fx:id="ipv4" selected="true" text="IPv4">
+                  <RadioButton fx:id="ipv4" selected="true" text="IPv4" textFill="WHITE">
                      <toggleGroup>
                         <ToggleGroup fx:id="tg" />
-                     </toggleGroup></RadioButton>
-                  <RadioButton fx:id="ipv6" text="IPv6" toggleGroup="$tg" />
-                  <CheckBox fx:id="SoundCheckbox" mnemonicParsing="false" text="Ping Sound" />
+                     </toggleGroup>
+                  </RadioButton>
+                  <RadioButton fx:id="ipv6" text="IPv6" textFill="WHITE" toggleGroup="$tg" />
+                  <CheckBox fx:id="SoundCheckbox" mnemonicParsing="false" text="Ping Sound" textFill="WHITE" />
                   <HBox spacing="5.0">
                      <children>
-                        <Label text="Ping Count :">
+                        <Label text="Ping Count :" textFill="WHITE">
                            <padding>
                               <Insets right="12.0" />
                            </padding>
                         </Label>
-                        <TextField fx:id="PingCountText" prefHeight="13.0" prefWidth="75.0" promptText="Ping Count" text="3">
+                        <TextField fx:id="PingCountText" prefHeight="13.0" prefWidth="75.0" promptText="Ping Count" styleClass="textfield" text="3">
                            <padding>
                               <Insets bottom="5.0" />
                            </padding>
@@ -55,12 +75,12 @@
                   </HBox>
                   <HBox>
                      <children>
-                        <Label text="Time Interval :">
+                        <Label text="Time Interval :" textFill="WHITE">
                            <padding>
                               <Insets right="20.0" />
                            </padding>
                         </Label>
-                        <TextField fx:id="timeIntervalBox">
+                        <TextField fx:id="timeIntervalBox" styleClass="textfield" text="0.5">
                            <HBox.margin>
                               <Insets />
                            </HBox.margin>
@@ -75,21 +95,17 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </padding>
             </HBox>
-            <ScrollPane prefHeight="334.0" prefWidth="792.0">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="327.0" prefWidth="773.0">
-                     <children>
-                          <Label fx:id="label" layoutX="14.0" layoutY="14.0" minHeight="16" minWidth="69" text="Type Any Address to Ping" textAlignment="CENTER" />
-                     </children>
-                     <HBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                     </HBox.margin>
-                  </AnchorPane>
-              </content>
+            <ScrollPane prefHeight="334.0" prefWidth="792.0" VBox.vgrow="ALWAYS">
+               <content>
+                    <Label fx:id="label" minHeight="16" minWidth="69" text="Type Any Address to Ping" textAlignment="CENTER" textFill="#0d14eb" />
+               </content>
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
             </ScrollPane>
          </children>
          <padding>
-            <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+            <Insets bottom="12.0" />
          </padding>
       </VBox>
     </children>

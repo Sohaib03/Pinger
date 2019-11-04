@@ -7,8 +7,10 @@ package javafxpinger;
 
 import java.io.*;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
+import javafx.concurrent.Service;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -22,6 +24,10 @@ import javafx.scene.control.ToggleGroup;
  *
  * @author sohaib
  */
+
+
+
+
 public class FXMLDocumentController implements Initializable {
     @FXML
     private TextField textField;
@@ -40,6 +46,9 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     TextField timeIntervalBox;
     
+    private Service <Void> backgroundThread;
+    
+    public static String labelText = "Ping to continue";
     @FXML
     private void handleButtonAction(ActionEvent event) throws IOException {
         System.out.println("Ping !!!");
@@ -48,15 +57,44 @@ public class FXMLDocumentController implements Initializable {
         
         String flags = "-v";
         
-        //if (SoundCheckBox.isSelected()) flags.concat("a");
-        String PingCountString = PingCountText.getText();
         
-        int PingCount = Integer.parseInt(PingCountString);
+        int PingCount;
+        try {
+            String PingCountString = PingCountText.getText();
+            PingCount = Integer.parseInt(PingCountString);
+        }
+        catch (NumberFormatException e)
+        {
+            e.printStackTrace();
+            return;
+        }
+        
         if ("IPv6".equals(ip)) flags += "6";
         else flags += "4";
+        
         String webAddress=textField.getText();
-        String timeInterval = timeIntervalBox.getText();
-        label.setText(Pinger(webAddress,flags, PingCount, timeInterval));
+        float timeInterval ;
+        try {
+            timeInterval = Float.parseFloat(timeIntervalBox.getText());
+        }
+        catch (NumberFormatException e) {
+            e.printStackTrace();
+            return;
+        }
+        Ping ping = new Ping.Builder()
+            .webAddress(webAddress)
+            .timeInterval(timeInterval)
+            .pingCount(PingCount)
+            .flags(flags)
+            .build();
+        
+        
+        Thread t1 = new Thread(ping);
+        t1.start();
+        label.textProperty().bind(ping.messageProperty());
+        
+        
+        
     }
     
     @Override
@@ -65,31 +103,11 @@ public class FXMLDocumentController implements Initializable {
         
         
     }    
-    
-    
-    String Pinger(String webaddress, String flags, int PingCount, String timeInterval) throws IOException {
-        ProcessBuilder processBuilder = new ProcessBuilder();
-        String command = "ping -c "+PingCount+" "+flags+ " " + " -i " +timeInterval+ " " + webaddress;
-        System.out.println(command);
-        processBuilder.command("bash" , "-c", command);
-        String allLines = "";
-        try {
-            Process process =  processBuilder.start();
-            
-            BufferedReader reader = new BufferedReader( new InputStreamReader(process.getInputStream()));
-            String line;
-            
-            while ((line = reader.readLine()) != null) {
-                //System.out.println(line);
-                allLines += line + "\n";
-            }
-            //System.out.println(allLines);
-            return allLines;
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        }
-        return "Please Check Your internet Connection.";
+    @FXML
+    private void closeButtonClicked() {
+        Platform.exit();
+        System.exit(0);
     }
+    
 }
 

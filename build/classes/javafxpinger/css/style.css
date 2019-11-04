@@ -1,0 +1,77 @@
+.button {
+    -fx-font-weight : bold;
+    -fx-background-color: #2196f3;
+    -fx-background-radius: 5;
+    -fx-font-size : 12;
+    -fx-text-fill: white;
+}
+
+.button:hover {
+    -fx-font-weight : bold;
+    -fx-background-color: white;
+    -fx-background-radius: 5;
+    -fx-font-size : 12;
+    -fx-text-fill: #2196f3;
+    
+}
+
+.button:pressed {
+    -fx-font-weight : bold;
+    -fx-background-color: white;
+    -fx-background-radius: 5;
+    -fx-font-size : 12;
+    -fx-text-fill: #ff0000;
+   
+}
+
+
+.textfield {
+    -fx-background-color: white , #3F5577 , #3F5577 ;
+    -fx-background-insets: 0 -1 -1 -1 , 0 0 0 0 , 0 -1 3 -1;
+    -fx-background-radius: 0;
+    -fx-text-fill: white;
+}
+
+.textfield:focused {
+    -fx-background-color: #7EF9FF , #3F5577 , #3F5577 ;
+    -fx-background-insets: 0 -1 -1 -1 , 0 0 0 0 , 0 -1 3 -1;
+    -fx-background-radius: 0;
+    -fx-text-fill: white;
+}
+
+.borderPane {
+    -fx-background-color: #3F5577;
+}
+
+.titleBar {
+    -fx-background-color: #203249;
+}
+.bottomBar {
+    -fx-background-color: #c1c1c1;
+}
+
+.closeBtn {
+    -fx-background-color: #203249;
+    -fx-graphic: url("close-button.png");
+    -fx-background-radius: 0;
+}
+
+.closeBtn:hover {
+    -fx-background-color: red;
+    -fx-background-radius: 0;
+}
+.closeBtn:focused {
+    -fx-background-color: #203249;
+    -fx-graphic: url("close-button.png");
+    -fx-background-radius: 0;
+}
+.appName {
+    -fx-background-color: #203249;
+    -fx-text-fill: white;
+}
+.scroll-pane {
+    -fx-background-color: #ccccff;
+}
+.scroll-pane > .viewport {
+   -fx-background-color: transparent;
+}
