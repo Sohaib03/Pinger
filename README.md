@@ -5,7 +5,7 @@ JavaFx Application to Ping a specific website in both IPv4 and IPv6 format.
 
 ## Dependencies
 * System must have Jre/Jdk installed
-* JRE/JDK version 1.8 and above. Since, JavaFx is dropped from Java SE 11, JavaFx must be installed seperately.
+* JRE/JDK version 1.8 and above. Since, JavaFx is dropped from Java SE 11, JavaFx must be installed seperately for Java SE 11.
 ## Run the File
 
 ``` 
